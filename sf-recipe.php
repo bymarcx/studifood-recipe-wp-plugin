@@ -14,19 +14,19 @@ function custom_post_type() {
  
     // Set UI labels for Custom Post Type
         $labels = array(
-            'name'                => _x( 'Recipes', 'Post Type General Name', '_customtheme' ),
+            'name'                => _x( 'Rezepte', 'Post Type General Name', '_customtheme' ),
             'singular_name'       => _x( 'Recipe', 'Post Type Singular Name', '_customtheme' ),
-            'menu_name'           => __( 'Recipes', '_customtheme' ),
+            'menu_name'           => __( 'Rezepte', '_customtheme' ),
             'parent_item_colon'   => __( 'Parent Recipe', '_customtheme' ),
-            'all_items'           => __( 'All Recipe', '_customtheme' ),
-            'view_item'           => __( 'View Recipe', '_customtheme' ),
-            'add_new_item'        => __( 'Add New Recipe', '_customtheme' ),
-            'add_new'             => __( 'Add Recipe', '_customtheme' ),
-            'edit_item'           => __( 'Edit Recipe', '_customtheme' ),
-            'update_item'         => __( 'Update Recipe', '_customtheme' ),
-            'search_items'        => __( 'Search Recipe', '_customtheme' ),
-            'not_found'           => __( 'Not Found', '_customtheme' ),
-            'not_found_in_trash'  => __( 'Not found in Trash', '_customtheme' ),
+            'all_items'           => __( 'Alle Rezepte', '_customtheme' ),
+            'view_item'           => __( 'Rezept anschauen', '_customtheme' ),
+            'add_new_item'        => __( 'neues Rezept erstellen', '_customtheme' ),
+            'add_new'             => __( 'Rezept hinzufügen', '_customtheme' ),
+            'edit_item'           => __( 'Rezept bearbeiten', '_customtheme' ),
+            'update_item'         => __( 'Rezept updaten', '_customtheme' ),
+            'search_items'        => __( 'Rezept suchen', '_customtheme' ),
+            'not_found'           => __( 'Nicht gefunden', '_customtheme' ),
+            'not_found_in_trash'  => __( 'Nicht gefunden im Müll', '_customtheme' ),
         );
          
     // Set other options for Custom Post Type
@@ -38,7 +38,7 @@ function custom_post_type() {
             // Features this CPT supports in Post Editor
             'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'revisions', 'custom-fields', ),
             // You can associate this CPT with a taxonomy or custom taxonomy. 
-            'taxonomies'          => array( 'Mahlzeit', 'Zutat' ),
+            'taxonomies'          => array( 'Mahlzeit', 'Zutat', 'Utensil', 'Aufwand' ),
             /* A hierarchical CPT is like Pages and can have
             * Parent and child items. A non-hierarchical CPT
             * is like Posts.
@@ -56,7 +56,10 @@ function custom_post_type() {
             'publicly_queryable'  => true,
             'capability_type'     => 'post',
             'show_in_rest'        => true,
-            'menu_icon'           => '',
+            'menu_icon'           => true,
+            'rewrite' => array(
+              'slug' => 'rezepte'
+          )
         );
          
         // Registering your Custom Post Type
@@ -70,6 +73,24 @@ function custom_post_type() {
     */
      
     add_action( 'init', 'custom_post_type', 0 );
+
+
+    // /*
+    // CHANGE SLUGS OF CUSTOM POST TYPES
+    // */
+    // function change_post_types_slug( $args, $post_type ) {
+
+    //   /*item post type slug*/   
+    //   if ( 'recipes' === $post_type ) {
+    //     $args['rewrite']['slug'] = 'rezepte';
+    //   }
+
+    //   return $args;
+    // }
+    // add_filter( 'register_post_type_args', 'change_post_types_slug', 10, 2 );
+
+
+
 
 
     // TAXONOMY :: Mahlzeit
@@ -101,7 +122,7 @@ function custom_post_type() {
     }
 
 
-    // TAXONOMY :: Mahlzeit
+    // TAXONOMY :: Zutat
     add_action( 'init', 'create_zutat_taxonomies', 0 );
     function create_zutat_taxonomies()
     {
@@ -130,7 +151,59 @@ function custom_post_type() {
     }
 
 
+// TAXONOMY :: Utensilien
+add_action( 'init', 'create_utensilien_taxonomies', 0 );
+function create_utensilien_taxonomies()
+{
+  // Add new taxonomy, make it hierarchical (like categories)
+  $labels = array(
+    'name' => _x( 'Utensilien', 'taxonomy general name' ),
+    'singular_name' => _x( 'Utensil', 'taxonomy singular name' ),
+    'search_items' =>  __( 'Search Utensilien' ),
+    'popular_items' => __( 'Popular Utensilien' ),
+    'all_items' => __( 'All Utensilien' ),
+    'parent_item' => __( 'Parent Utensilien' ),
+    'parent_item_colon' => __( 'Parent Utensilien:' ),
+    'edit_item' => __( 'Edit Utensilien' ),
+    'update_item' => __( 'Update Utensilien' ),
+    'add_new_item' => __( 'Add New Utensilien' ),
+    'new_item_name' => __( 'New Utensilien Name' ),
+  );
+  register_taxonomy('utensil',array('recipes'), array(
+    'hierarchical' => true,
+    'labels' => $labels,
+    'show_ui' => true,
+    'show_in_rest' => true,
+    'query_var' => true,
+    'rewrite' => array( 'slug' => 'utensil' ),
+  ));
+}
 
+// TAXONOMY :: Aufwand
+add_action( 'init', 'create_aufwand_taxonomies', 0 );
+function create_aufwand_taxonomies()
+{
+  // Add new taxonomy, make it hierarchical (like categories)
+  $labels = array(
+    'name' => _x( 'Aufwand', 'taxonomy general name' ),
+    'singular_name' => _x( 'Aufwand', 'taxonomy singular name' ),
+    'search_items' =>  __( 'Search Aufwand' ),
+    'popular_items' => __( 'Popular Aufwand' ),
+    'all_items' => __( 'All Aufwand' ),
+    'parent_item' => __( 'Parent Aufwand' ),
+    'parent_item_colon' => __( 'Parent Aufwand:' ),
+    'edit_item' => __( 'Edit Aufwand' ),
+    'update_item' => __( 'Update Aufwand' ),
+    'add_new_item' => __( 'Add New Aufwand' ),
+    'new_item_name' => __( 'New Aufwand Name' ),
+  );
+  register_taxonomy('aufwand',array('recipes'), array(
+    'hierarchical' => true,
+    'labels' => $labels,
+    'show_ui' => true,
+    'show_in_rest' => true,
+    'query_var' => true,
+    'rewrite' => array( 'slug' => 'aufwand' ),
+  ));
+}
 
-
-    
