@@ -39,7 +39,6 @@ function custom_post_type()
     // Features this CPT supports in Post Editor
     'supports'            => array('title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'revisions', 'custom-fields',),
     // You can associate this CPT with a taxonomy or custom taxonomy. 
-    // No need of custom taxonomies anymore.
     //'taxonomies'          => array('Mahlzeit', 'Zutat', 'Utensil', 'Aufwand'),
     /* A hierarchical CPT is like Pages and can have
             * Parent and child items. A non-hierarchical CPT
@@ -74,122 +73,6 @@ function custom_post_type()
     */
 
 add_action('init', 'custom_post_type', 0);
-
-
-// // TAXONOMY :: Mahlzeit
-// // add_action('init', 'create_mahlzeit_taxonomies', 0);
-// function create_mahlzeit_taxonomies()
-// {
-//   // Add new taxonomy, make it hierarchical (like categories)
-//   $labels = array(
-//     'name' => _x('Mahlzeit', 'taxonomy general name'),
-//     'singular_name' => _x('Mahlzeit', 'taxonomy singular name'),
-//     'search_items' =>  __('Search Mahlzeiten'),
-//     'popular_items' => __('Popular Mahlzeit'),
-//     'all_items' => __('All Mahlzeiten'),
-//     'parent_item' => __('Parent Mahlzeit'),
-//     'parent_item_colon' => __('Parent Recording:'),
-//     'edit_item' => __('Edit Mahlzeit'),
-//     'update_item' => __('Update Mahlzeit'),
-//     'add_new_item' => __('Add New Mahlzeit'),
-//     'new_item_name' => __('New Mahlzeit Name'),
-//   );
-//   register_taxonomy('mahlzeit', array('recipes'), array(
-//     'hierarchical' => true,
-//     'labels' => $labels,
-//     'show_ui' => true,
-//     'show_in_rest' => true,
-//     'query_var' => true,
-//     'rewrite' => array('slug' => 'mahlzeit'),
-//   ));
-// }
-
-
-// // TAXONOMY :: Zutat
-// //add_action('init', 'create_zutat_taxonomies', 0);
-// function create_zutat_taxonomies()
-// {
-//   // Add new taxonomy, make it hierarchical (like categories)
-//   $labels = array(
-//     'name' => _x('Zutat', 'taxonomy general name'),
-//     'singular_name' => _x('Zutat', 'taxonomy singular name'),
-//     'search_items' =>  __('Search Zutat'),
-//     'popular_items' => __('Popular Zutat'),
-//     'all_items' => __('Alle Zutaten'),
-//     'parent_item' => __('Parent Zutat'),
-//     'parent_item_colon' => __('Parent Zutat:'),
-//     'edit_item' => __('Edit Zutat'),
-//     'update_item' => __('Update Zutat'),
-//     'add_new_item' => __('Add New Zutat'),
-//     'new_item_name' => __('New Zutat Name'),
-//   );
-//   register_taxonomy('zutat', array('recipes'), array(
-//     'hierarchical' => true,
-//     'labels' => $labels,
-//     'show_ui' => true,
-//     'show_in_rest' => true,
-//     'query_var' => true,
-//     'rewrite' => array('slug' => 'zutat'),
-//   ));
-// }
-
-
-// // TAXONOMY :: Utensilien
-// // add_action('init', 'create_utensilien_taxonomies', 0);
-// function create_utensilien_taxonomies()
-// {
-//   // Add new taxonomy, make it hierarchical (like categories)
-//   $labels = array(
-//     'name' => _x('Utensilien', 'taxonomy general name'),
-//     'singular_name' => _x('Utensil', 'taxonomy singular name'),
-//     'search_items' =>  __('Search Utensilien'),
-//     'popular_items' => __('Popular Utensilien'),
-//     'all_items' => __('All Utensilien'),
-//     'parent_item' => __('Parent Utensilien'),
-//     'parent_item_colon' => __('Parent Utensilien:'),
-//     'edit_item' => __('Edit Utensilien'),
-//     'update_item' => __('Update Utensilien'),
-//     'add_new_item' => __('Add New Utensilien'),
-//     'new_item_name' => __('New Utensilien Name'),
-//   );
-//   register_taxonomy('utensil', array('recipes'), array(
-//     'hierarchical' => true,
-//     'labels' => $labels,
-//     'show_ui' => true,
-//     'show_in_rest' => true,
-//     'query_var' => true,
-//     'rewrite' => array('slug' => 'utensil'),
-//   ));
-// }
-
-// // TAXONOMY :: Aufwand
-// // add_action('init', 'create_aufwand_taxonomies', 0);
-// function create_aufwand_taxonomies()
-// {
-//   // Add new taxonomy, make it hierarchical (like categories)
-//   $labels = array(
-//     'name' => _x('Aufwand', 'taxonomy general name'),
-//     'singular_name' => _x('Aufwand', 'taxonomy singular name'),
-//     'search_items' =>  __('Search Aufwand'),
-//     'popular_items' => __('Popular Aufwand'),
-//     'all_items' => __('All Aufwaende'),
-//     'parent_item' => __('Parent Aufwand'),
-//     'parent_item_colon' => __('Parent Aufwand:'),
-//     'edit_item' => __('Edit Aufwand'),
-//     'update_item' => __('Update Aufwand'),
-//     'add_new_item' => __('Add New Aufwand'),
-//     'new_item_name' => __('New Aufwand Name'),
-//   );
-//   register_taxonomy('aufwand', array('recipes'), array(
-//     'hierarchical' => true,
-//     'labels' => $labels,
-//     'show_ui' => true,
-//     'show_in_rest' => true,
-//     'query_var' => true,
-//     'rewrite' => array('slug' => 'aufwand'),
-//   ));
-// }
-
 
 // DISABLE DEFAULT POST TYPE
 // cause not needed!!!
