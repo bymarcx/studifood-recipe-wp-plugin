@@ -1,3 +1,7 @@
 # studifood-recipe-wp-plugin
 
-creates the CPT Recipe for StudiFood
+studifood-recipe-wp-plugin :: 21
+
+Creates the CPT "Recipe" for StudiFood.
+
+(C) 2021 Marc Eberhard
